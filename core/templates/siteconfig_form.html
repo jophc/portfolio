@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>⚙️ {{ page_title }}</h1>
+        <a href="{% url 'core:dashboard' %}" class="btn btn-secondary">
+            &larr; Voltar ao Dashboard
+        </a>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            {# IMPORTANTE: O formulário precisa de enctype="multipart/form-data" para lidar com upload de imagens #}
+            <form method="post" enctype="multipart/form-data">
+                
+                {% csrf_token %}
+
+                <h5 class="mt-4 mb-3 text-primary">Seção Principal (Hero)</h5>
+                <hr>
+                <div class="mb-3">
+                    {{ form.hero_title.label_tag }}
+                    {{ form.hero_title }}
+                </div>
+                <div class="mb-3">
+                    {{ form.hero_lead.label_tag }}
+                    {{ form.hero_lead }}
+                </div>
+                <div class="mb-3">
+                    {{ form.hero_image.label_tag }}
+                    {% if form.instance.hero_image %}
+                        <p>
+                            Imagem Atual: 
+                            <img src="{{ form.instance.hero_image.url }}" alt="Hero Image" style="width: 150px; height: auto; display: block;">
+                            <small class="form-text text-muted">Para remover, marque o checkbox "Clear" abaixo e salve.</small>
+                        </p>
+                    {% endif %}
+                    {{ form.hero_image }}
+                    {% for error in form.hero_image.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <h5 class="mt-5 mb-3 text-primary">Seção Sobre Mim</h5>
+                <hr>
+                <div class="mb-3">
+                    {{ form.about_title.label_tag }}
+                    {{ form.about_title }}
+                </div>
+                <div class="mb-3">
+                    {{ form.about_text_p1.label_tag }}
+                    {{ form.about_text_p1 }}
+                </div>
+                <div class="mb-3">
+                    {{ form.about_text_p2.label_tag }}
+                    {{ form.about_text_p2 }}
+                </div>
+                <div class="mb-3">
+                    {{ form.about_image.label_tag }}
+                    {% if form.instance.about_image %}
+                        <p>
+                            Imagem Atual: 
+                            <img src="{{ form.instance.about_image.url }}" alt="About Image" style="width: 150px; height: auto; display: block;">
+                            <small class="form-text text-muted">Para remover, marque o checkbox "Clear" abaixo e salve.</small>
+                        </p>
+                    {% endif %}
+                    {{ form.about_image }}
+                    {% for error in form.about_image.errors %}
+                        <div class="text-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                
+                <h5 class="mt-5 mb-3 text-primary">Informações de Contato</h5>
+                <hr>
+                <div class="mb-3">
+                    {{ form.whatsapp_number.label_tag }}
+                    {{ form.whatsapp_number }}
+                </div>
+                <div class="mb-3">
+                    {{ form.email_address.label_tag }}
+                    {{ form.email_address }}
+                </div>
+
+                <button type="submit" class="btn btn-success btn-lg mt-4">Salvar Configurações</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

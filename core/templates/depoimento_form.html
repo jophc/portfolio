@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{{ page_title }}</h1>
+        <a href="{% url 'core:depoimento_lista' %}" class="btn btn-secondary">
+            &larr; Voltar para a Lista
+        </a>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            {# 1. CORREÇÃO CRÍTICA: Definindo a URL de Ação #}
+            {# Se o objeto (instance) existir, edita. Se não, cria (novo) #}
+            <form method="post" enctype="multipart/form-data" 
+                  action="
+                    {% if form.instance.pk %}
+                        {% url 'core:depoimento_editar' pk=form.instance.pk %}
+                    {% else %}
+                        {% url 'core:depoimento_criar' %}
+                    {% endif %}
+                  ">
+                
+                {# 2. CORREÇÃO CRÍTICA: Tag de Segurança #}
+                {% csrf_token %}
+
+                {# 3. Renderização do formulário com estilos Bootstrap #}
+                {% for field in form %}
+                    <div class="mb-3">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <div class="form-text">{{ field.help_text }}</div>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <div class="invalid-feedback d-block">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-success mt-3">
+                    {% if form.instance.pk %}Salvar Alterações{% else %}Criar Depoimento{% endif %}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

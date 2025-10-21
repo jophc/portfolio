@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard - Gerenciamento{% endblock %}
+
+{% block content %}
+<div class="container">
+    {# TÍTULO NO TOPO #}
+    <div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+        <h1 class="">🏠 Bem-vindo(a), {{ user.username }}!</h1>
+    </div>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <p class="lead">Este é o painel de controle do seu Portfólio. Gerencie seus projetos, depoimentos e mensagens.</p>
+
+    <div class="row card-deck">
+        
+        {# CARTÃO 1: PROJETOS #}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-primary">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Total de Projetos</h5>
+                    
+                    <a href="{% url 'core:projeto_lista' %}" class="btn btn-primary btn-sm">
+                        Gerenciar Projetos &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {# CARTÃO 2: MENSAGENS DE CONTATO #}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-info">
+                <div class="card-body">
+                    <h5 class="card-title text-info">Mensagens de Contato</h5>
+                    <a href="{% url 'core:lista_mensagens' %}" class="btn btn-info btn-sm">
+                        Ver Mensagens &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        {# CARTÃO 3: AÇÕES RÁPIDAS - AGORA INCLUINDO SERVIÇOS #}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-success">
+                <div class="card-body">
+                    <h5 class="card-title text-success">Painel de Serviços Serviços</h5>
+                    
+                    {# Adicionado: Botão para Gerenciar Serviços #}
+                    <a href="{% url 'core:servico_lista' %}" class="btn btn-warning btn-sm d-block mb-3">
+                        📋 Gerenciar Serviços
+                    </a>
+                </div>
+             </div>
+            </div>
+        </div>   
+    
+        {# CARTÃO 4: GERENCIAMENTO DE DEPOIMENTOS #}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-info">
+                <div class="card-body">
+                    <h5 class="card-title text-info"> Gerenciar Depoimentos</h5>
+                    
+                    {# Adicionado: Botão para Gerenciar depoimentos #}
+                    <a href="{% url 'core:depoimento_lista' %}" class="btn btn-outline-success btn-sm d-block">
+                        💬 Gerenciar Depoimentos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {# CARTÃO 4: GERENCIAMENTO DE DEPOIMENTOS #}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-info">
+                <div class="card-body">
+                    <h5 class="card-title text-info">Configurações do Site</h5>
+                    
+                       {# Botão para Edição do SiteConfig (Conteúdo Home) #}
+                       <a href="{% url 'core:siteconfig_editar' %}" class="btn btn-warning btn-lg">
+                           ⚙️ Acessar Configurações do Site
+                       </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">    
+    
+</div>
+{% endblock %}

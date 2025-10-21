@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu Portfólio{% endblock %}</title>
+    {% load static %}
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" sizes="any">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
+    
+    {# LINHA CRÍTICA: Carrega a biblioteca HTMX para interatividade assíncrona #}
+    <script src="https://unpkg.com/htmx.org@1.9.10" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <header id="main-header">
+        <div class="container">
+            <div class="brand">
+                <div class="logo">
+                    <img src="{% static 'images/favicon.png' %}" alt="Logo José Pedro" class="header-logo">
+                </div>
+                <div>
+                    <h1>José Pedro Designer</h1>
+                    <p>Designer de álbuns fotográficos • Capas & diagramação</p>
+                </div>
+            </div>
+            <nav id="main-nav">
+                <a href="#portfolio">Portfólio</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre</a>
+                <a class="btn" href="{% url 'core:contato' %}">Vamos conversar</a>
+
+                {% if user.is_authenticated %}
+                    <div class="user-actions">
+                        <a href="{% url 'core:home' %}" class="btn">
+                            🏠 Ver Site
+                        </a>
+
+                        <form method="post" action="{% url 'logout' %}" class="logout-form">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger">Sair</button>
+                        </form>
+
+                    </div>
+                {% endif %}
+
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> José Pedro Designer — Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const nav = document.getElementById('main-nav');
+        const toggleButton = nav.querySelector('.menu-toggle'); 
+        if (toggleButton && nav) {
+            toggleButton.addEventListener('click', () => {
+                nav.classList.toggle('open');
+            });
+        }
+
+        document.querySelectorAll('#main-nav a').forEach(link => {
+          if (link.getAttribute('href') && link.getAttribute('href').startsWith('#')) { 
+            link.addEventListener('click', () => {
+              if (nav.classList.contains('open')) {
+                nav.classList.remove('open');
+              }
+            });
+          }
+        });
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('#main-nav a');
+        const mainHeader = document.getElementById('main-header');
+
+        function highlightNavLink() {
+            let current = '';
+            const scrollY = window.scrollY;
+            const headerHeight = mainHeader ? mainHeader.offsetHeight : 0;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - headerHeight - 50 && scrollY < sectionTop + sectionHeight - headerHeight - 50) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const linkHref = link.getAttribute('href');
+                if (linkHref && linkHref.startsWith('#') && linkHref === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightNavLink);
+        document.addEventListener('DOMContentLoaded', highlightNavLink);
+    </script>
+</body>
+</html>

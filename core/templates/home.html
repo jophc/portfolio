@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Início - José Pedro Designer{% endblock %}
+
+{% block content %}
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <h2 class="animate-fade-in-down">Transformo suas memórias em álbuns que contam histórias</h2>
+    <p class="lead animate-fade-in-up">
+      Com foco em design autêntico e acabamento premium, crio álbuns que eternizam momentos. 
+      Do conceito à entrega, cada projeto é pensado para ser uma peça única.
+    </p>
+    <div class="hero-cta">
+      <a class="btn" href="#contato">Quero um orçamento</a>
+      <a class="ghost" href="#portfolio">Ver todos os projetos</a>
+    </div>
+    <div class="info-hero">
+      Prazo médio <strong>7–14 dias</strong> (amostra digital) • Entrega física sob consulta
+    </div>
+  </div>
+
+  <aside class="preview-card">
+    <img
+      src="{% static 'images/transformo-suas-memorias-em-albuns.png' %}"
+      alt="Álbum de casamento com layout clean">
+  </aside>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="services" class="section">
+  <h3>Meus Serviços</h3>
+  <div class="grid three-col">
+    <div class="card">
+      <img src="{% static 'images/design-e-diagramacao.png' %}" alt="Design e Diagramação" loading="lazy">
+      <h4>Design e Diagramação</h4>
+      <p>Transformo suas fotos em uma narrativa visual fluida e harmoniosa, garantindo que cada página conte uma parte da sua história.</p>
+    </div>
+    <div class="card">
+      <img src="{% static 'images/criacao-de-capas.png' %}" alt="Criação de Capas" loading="lazy">
+      <h4>Criação de Capas</h4>
+      <p>Desenho de capas personalizadas que refletem a essência do seu álbum, com acabamentos em relevo, hotstamping e materiais nobres.</p>
+    </div>
+    <div class="card">
+      <img src="{% static 'images/producao-e-acabamento.png' %}" alt="Produção e Acabamento" loading="lazy">
+      <h4>Produção e Acabamento</h4>
+      <p>Gerencio todo o processo de produção com os melhores laboratórios parceiros para garantir um resultado impecável e durável.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFÓLIO -->
+<section id="portfolio" class="section">
+  <h3>Projetos Recentes</h3>
+  <div class="grid">
+    <article class="card">
+      <img src="{% static 'images/album-1-ano-delicado.png' %}" alt="Álbum de bebê com capa em linho creme" loading="lazy">
+      <h4>Álbum 1 Ano — Delicado</h4>
+      <p>Linho creme • 40 lâminas • Layout clean para destacar as fotos do bebê.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/casamento-vintage.png' %}" alt="Álbum de casamento vintage com capa dura" loading="lazy">
+      <h4>Casamento — Vintage</h4>
+      <p>Capa dura com hotstamping • 60 páginas • Combinação de tipografias clássicas.</p>
+    </article>
+    <article class="card">
+      <img src="{% static 'images/ensaio-15-anos-debutante.png' %}" alt="Álbum de ensaio 15 anos debutante" loading="lazy">
+      <h4>Ensaio 15 Anos — Debutante</h4>
+      <p>Álbum temático, margens amplas e composição pensada para narrar a festa de 15 anos.</p>
+    </article>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" class="section">
+  <h3>O que meus clientes dizem</h3>
+  <div class="carousel-wrapper">
+    <div class="testimonial-carousel">
+      {% for testimonial in testimonials %}
+        <div class="testimonial">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p>{{ testimonial.message }}</p>
+          <strong>{{ testimonial.author }}</strong>
+        </div>
+      {% empty %}
+        <p>Ainda não há depoimentos cadastrados.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="section">
+  <h3>Sobre mim</h3>
+  <div class="two-col reverse">
+    <div class="text-block">
+      <h4>José Pedro - O Designer por trás da história</h4>
+      <p>Olá! Sou um designer apaixonado por transformar fotografias em arte. 
+        Com um olhar detalhado e uma abordagem minimalista, crio álbuns que não apenas guardam memórias, 
+        mas as contam de uma forma única e atemporal.</p>
+      <p>Minha jornada começou com a vontade de dar às fotos a importância que elas merecem, elevando-as de 
+        arquivos digitais a heranças de família. Cada projeto é um convite para criar algo especial, pensado com carinho e dedicação.</p>
+    </div>
+    <div class="image-block">
+      <img src="{% static 'images/sobre-mim.jpg' %}" alt="José Pedro Designer">
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="section">
+  <h3>Vamos Criar Algo Juntos!</h3>
+  <div class="contact contact-card">
+    <h4>Envie uma mensagem:</h4>
+    <form action="{% url 'core:contato' %}" method="post">
+      {% csrf_token %}
+      <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="name" class="form-input" placeholder="Seu nome completo">
+      </div>
+
+      <div>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" class="form-input" placeholder="Seu e-mail">
+      </div>
+
+      <div>
+        <label for="telefone">Telefone / WhatsApp</label>
+        <input type="text" id="telefone" name="telefone" class="form-input" placeholder="Seu número de WhatsApp (opcional)">
+      </div>
+
+      <div>
+        <label for="subject">Assunto</label>
+        <input type="text" id="subject" name="subject" class="form-input" placeholder="Assunto da mensagem">
+      </div>
+
+      <div>
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="message" class="form-textarea" placeholder="Escreva sua mensagem..."></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-submit">Enviar Mensagem</button>
+        <a class="ghost" href="https://wa.me/557499248931" target="_blank">Abrir WhatsApp</a>
+      </div>
+    </form>
+
+    
+    <!-- Contato direto centralizado sempre -->
+    <div class="contact-direct responsive-center">
+      <h4>Contato direto</h4>
+      <div class="contact-line"><strong>WhatsApp:</strong><a href="https://wa.me/557499248931" target="_blank"><i class="fab fa-whatsapp"></i> (74) 9924-8931</a></div>
+      <div class="contact-line"><strong>E-mail:</strong> <a href="mailto:zepedro.contato@gmail.com"><i class="fas fa-envelope"></i> zepedro.contato@gmail.com</a></div>
+      <div class="contact-line"><strong>Instagram:</strong> <a href="https://instagram.com/designerdealbuns" target="_blank"><i class="fab fa-instagram"></i> @designerdealbuns</a></div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

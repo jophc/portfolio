@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Sessão Encerrada{% endblock %}
+
+{% block content %}
+<section id="logout" class="section logout-section">
+    <h3 style="color: var(--accent);">👋 Sessão Encerrada com Sucesso</h3>
+    <p class="lead">
+        Você saiu da área administrativa. Seus dados foram protegidos.
+    </p>
+    
+    <p class="mt-4">
+        <a href="{% url 'login' %}" class="btn btn-primary">
+            Acessar Novamente
+        </a>
+        <a href="{% url 'core:home' %}" class="ghost">
+            Voltar para a Página Inicial
+        </a>
+    </p>
+</section>
+{% endblock %}

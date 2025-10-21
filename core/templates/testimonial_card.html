@@ -1,0 +1,8 @@
+<div id="testimonial-card" class="testimonial-card shadow p-4" style="width: 400px;">
+    {% if testimonial %}
+        <p class="quote">“{{ testimonial.message }}”</p>
+        <p class="author">— {{ testimonial.author }}</p>
+    {% else %}
+        <p>Nenhum depoimento disponível.</p>
+    {% endif %}
+</div>

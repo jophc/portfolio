@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Confirmar Exclusão{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-danger">⚠️ Confirmar Exclusão</h1>
+
+    <div class="card p-4">
+        <p>Você tem certeza que deseja excluir o projeto **"{{ projeto.nome_album }}"**?</p>
+        <p class="text-danger">Esta ação é irreversível e removerá permanentemente o projeto do banco de dados.</p>
+        
+        <form method="post" action="{% url 'core:projeto_excluir' projeto.pk %}" class="mt-4">
+            {% csrf_token %}
+            
+            <button type="submit" class="btn btn-danger">Sim, EXCLUIR permanentemente</button>
+            
+            <a href="{% url 'core:projeto_lista' %}" class="btn btn-secondary ms-2">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

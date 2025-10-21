@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Confirmar Exclusão{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="mb-4 text-danger">⚠️ Confirmar Exclusão</h1>
+    
+    <div class="alert alert-warning">
+        {# CORREÇÃO AQUI: Usando 'mensagem' (que é o objeto Servico) #}
+        Você tem certeza que deseja excluir permanentemente o registro de: 
+        <strong>"{{ mensagem }}"</strong>? 
+    </div>
+    
+    {# O action do formulário é implícito e aponta para a URL que o renderizou (servico_excluir) #}
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sim, Excluir</button>
+        <a href="{% url 'core:servico_lista' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

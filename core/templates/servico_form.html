@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{{ page_title }}</h1>
+        <a href="{% url 'core:servico_lista' %}" class="btn btn-secondary">
+            &larr; Voltar para a Lista
+        </a>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            {# Form para criação/edição de serviços #}
+            <form method="post" 
+                  action="
+                    {% if form.instance.pk %}
+                        {% url 'core:servico_editar' pk=form.instance.pk %}
+                    {% else %}
+                        {% url 'core:servico_criar' %}
+                    {% endif %}
+                  ">
+                
+                {% csrf_token %}
+
+                {# Renderiza o formulário completo com os campos Name, Description, Icon #}
+                {{ form.as_p }}
+                
+                <div class="form-actions mt-4">
+                    <button type="submit" class="btn btn-success">
+                        {% if form.instance.pk %}Salvar Alterações{% else %}Criar Serviço{% endif %}
+                    </button>
+                    <a href="{% url 'core:servico_lista' %}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

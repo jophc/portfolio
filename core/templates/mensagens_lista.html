@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Mensagens Recebidas{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>📨 Mensagens de Contato</h1>
+        <a href="{% url 'core:dashboard' %}" class="btn btn-secondary">
+            &larr; Voltar para o Dashboard
+        </a>
+    </div>
+
+    {% if page_obj.object_list %}
+        <p class="lead text-muted">{{ page_obj.object_list|length }} mensagens em exibição.</p>
+        
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Assunto</th>
+                        <th>Mensagem</th>
+                        <th>Data de Criação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for message in page_obj.object_list %}
+                        <tr>
+                            <td>{{ message.name }}</td>
+                            <td><a href="mailto:{{ message.email }}">{{ message.email }}</a></td>
+                            <td>{{ message.subject|default:"(Sem assunto)" }}</td>
+                            <td>{{ message.message|truncatechars:80 }}</td>
+                            <td>{{ message.created_at|date:"d/m/Y H:i" }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {# Paginação #}
+        <div class="d-flex justify-content-center">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-primary btn-sm me-2">&laquo; Anterior</a>
+            {% endif %}
+            <span class="page-link">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="btn btn-outline-primary btn-sm ms-2">Próxima &raquo;</a>
+            {% endif %}
+        </div>
+
+    {% else %}
+        <div class="alert alert-info text-center">
+            <p class="mb-0">Caixa de entrada vazia. Nenhuma mensagem de contato recebida ainda.</p>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

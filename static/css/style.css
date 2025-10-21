@@ -1,0 +1,620 @@
+/* static/css/style.css */
+
+/* Variáveis CSS para cores e tamanhos */
+:root {
+  --bg: #fffdfb;
+  --card: #fff;
+  --muted: #6b6b6b;
+  --accent: #00c579;   /* cor principal */
+  --accent-2: #6643bf; /* cor secundária */
+  --radius: 14px;
+  --max-width: 1100px;
+}
+
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Montserrat', system-ui, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--accent-2);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 35px 28px; /* MELHORIA: Aumenta o padding vertical para 35px */
+}
+
+/* Header */
+header {
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Contêiner da logo: 56x56px */
+.brand .logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fff 0%, #f7f3f2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(59, 59, 59, 0.06);
+  padding: 5px; /* Adiciona um pequeno respiro */
+  /* Regras de texto removidas */
+}
+
+/* IMAGEM DA LOGO: OBRIGA A IMAGEM A CABER NO CONTÊINER 56x56px */
+.brand .logo .header-logo {
+    width: 100% !important; 
+    height: 100% !important;
+    object-fit: contain; /* Garante que a imagem inteira seja vista, sem cortar */
+}
+
+.brand h1 { font-size: 18px; margin: 0; }
+.brand p { margin: 0; font-size: 13px; color: var(--muted); }
+
+nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+nav a:not(.btn) { text-decoration: none !important; border-bottom: none !important; padding-bottom: 0 !important; }
+nav a:not(.btn):hover { color: var(--accent); }
+nav a.active { font-weight: 700; color: var(--accent); border-bottom: 2px solid var(--accent) !important; padding-bottom: 5px !important; }
+
+/* Estilo unificado para todos os botões */
+.btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;  /* Adiciona para evitar heranças diferentes */
+  white-space: nowrap;
+  text-decoration: none !important;
+  border: none;
+  display: inline-block;
+  line-height: normal;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 197, 121, 0.2);
+}
+
+/* Botão de logout no menu */
+.logout-form {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.logout-form .btn {
+  background-color: var(--accent); /* Redundante, mas ok */
+  color: #fff;
+  border: none;
+  padding: 10px 16px;      /* IGUAL ao .btn */
+  border-radius: 10px;
+  font-size: 1rem;         /* IGUAL ao .btn */
+  font-weight: 600;
+  line-height: normal;
+}
+
+/* Container que segura os dois botões */
+.user-actions {
+  display: flex;              /* Coloca lado a lado */
+  align-items: center;        /* Alinha verticalmente */
+
+}
+
+.ghost {
+  border-radius: 10px;
+  padding: 8px 12px;
+  border: 1px solid rgba(59, 59, 59, 0.06);
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  display: inline-block;
+  line-height: normal;
+}
+.ghost:hover { background: rgba(59, 59, 59, 0.03); }
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 32px;
+  align-items: center;
+  margin: 26px 0;
+}
+.hero-text h2 { font-family: 'Playfair Display', serif; font-size: 40px; margin: 0 0 12px; }
+.hero-text p.lead { margin: 0 0 18px; color: var(--muted); line-height: 1.6; }
+.hero-cta { display: flex; gap: 12px; }
+.preview-card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(59, 59, 59, 0.06);
+  overflow: hidden;
+}
+.preview-card img { width: 100%; height: 260px; object-fit: cover; border-radius: 12px; }
+
+/* Novo bloco para forçar o espaçamento entre CTA e a linha de info/prazo */
+.info-hero {
+    margin-top: 20px; /* Define o espaço de 20 pixels acima do texto */
+    font-size: 15px; /* Define o tamanho da fonte para a informação */
+    color: var(--muted); /* Usa a cor de texto secundária */
+    line-height: 1.5;
+}
+
+/* Sections */
+.section { margin: 48px 0; }
+.section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 35px;
+  margin: 6 6 6px; /* MELHORIA: Aumenta a margem inferior para separar do conteúdo */
+  text-align: center;
+  color: var(--accent-2);
+}
+
+/* Novo: Espaçamento para títulos internos */
+h1 { margin: 0 0 20px; font-size: 32px; color: var(--accent-2); }
+h2 { margin: 0 0 15px; font-size: 28px; color: var(--accent-2); }
+
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.card {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(59, 59, 59, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 10px; /* <-- adiciona espaço vertical entre os botões (ou outros filhos) */
+}
+.card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(59, 59, 59, 0.08); }
+.card img { width: 100%; height: 200px; object-fit: contain; background-color: #f8f8f8; border-radius: 10px; margin-bottom: 10px; }
+.card h4 { margin: 10px 0 6px; font-size: 20px; color: var(--accent-2); }
+.card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+/* Two-col layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.two-col.reverse { grid-template-areas: "text image"; }
+.two-col .text-block { display: flex; flex-direction: column; justify-content: center; }
+.two-col .image-block { display: flex; justify-content: center; align-items: flex-start; }
+.two-col .image-block img { display: block; width: 100% !important; max-width: 400px !important; height: auto !important; border-radius: var(--radius); }
+
+/* Sobre mim - José Pedro */
+.two-col .text-block h4 {
+  font-size: 28px;
+  color: var(--accent-2);
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+.two-col .text-block p {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+/* Forms */
+.contact {
+  background: linear-gradient(180deg, #fff, #fff);
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(59, 59, 59, 0.04);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.03);
+}
+.contact form { display: grid; gap: 15px; }
+.contact label { display: block; margin-bottom: 5px; font-weight: 600; color: var(--accent-2); }
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(59, 59, 59, 0.1);
+  font-size: 15px;
+  color: var(--accent-2);
+}
+/* Estilo para o título do formulário ("Envie uma mensagem") */
+.contact h4 {
+    text-align: left;
+    font-size: 22px; /* Define um tamanho menor que 28px do h3 */
+    font-family: 'Playfair Display', serif; /* Mantém a mesma família de fontes */
+    margin-top: 12; /* Remove a margem superior para melhor espaçamento */
+    margin-bottom: 20px;
+    text-align: left; /* Garante que o título do formulário fique alinhado à esquerda */
+}
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: 0.7; }
+input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0, 197, 121, 0.1); }
+textarea { min-height: 150px; resize: vertical; }
+
+/* Ajustes extras do formulário */
+.form-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 20px; /* MELHORIA: Espaço acima dos botões */
+}
+
+/* --- SEÇÃO DE CONTATO (LARGURA TOTAL) --- */
+#contato {
+  width: 100%;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* centraliza horizontalmente os filhos */
+  justify-content: center;   /* ATUALIZAR AQUI - centraliza verticalmente se houver espaço */
+  gap: 40px;                 /* ATUALIZAR AQUI - espaçamento entre form e contato direto */
+}
+#contato .contact {
+  width: 100%;
+  max-width: 800px;   /* ATUALIZAR AQUI - limita a largura do form */
+  padding: 30px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(59, 59, 59, 0.04);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.03);
+  background: var(--card);
+  margin: 0 auto;     /* ATUALIZAR AQUI - centraliza horizontalmente */
+}
+#contato .contact form {
+  display: grid;
+  gap: 18px;
+  width: 100%; /* largura completa do bloco de contato */
+}
+#contato .form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+}
+/* Contato direto centralizado */
+#contato .contact-direct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* ATUALIZAR AQUI - garante que todo conteúdo fique no centro */
+  justify-content: center;   /* ATUALIZAR AQUI - centraliza verticalmente se necessário */
+  text-align: center;        /* ATUALIZAR AQUI - centraliza textos e links */
+  max-width: 500px;
+  margin: 0 auto;            /* ATUALIZAR AQUI - remove top desnecessário e centraliza bloco */
+  gap: 6px;
+}
+#contato .contact-direct h4 {
+  text-align: center;
+  margin-bottom: 12px;
+  font-size: 35px;
+  color: var(--accent-2);
+}
+#contato .contact-direct .contact-line {
+  /*margin: 6px 0;*/
+  font-size: 15px;
+  color: var(--muted);
+}
+#contato .contact-direct .contact-line a {
+  color: var(--accent);
+  text-decoration: none;
+}
+#contato .contact-direct .contact-line a:hover {
+  text-decoration: underline;
+}
+
+/* --- Ajustes extras do formulário com novas classes --- */
+.contact-card {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(59, 59, 59, 0.1);
+  font-size: 15px;
+  color: var(--accent-2);
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 197, 121, 0.1);
+}
+
+.form-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.btn-submit {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.btn-submit:hover {
+  background: #00a864;
+}
+
+
+/* Menu toggle */
+.menu-toggle { display: none; background: none; border: none; font-size: 30px; cursor: pointer; color: var(--accent-2); }
+
+/* Animations */
+@keyframes fade-in-down { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-in-down { animation: fade-in-down 0.8s ease-out forwards; }
+@keyframes fade-in-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+
+/* --- CARROSSEL DE DEPOIMENTOS --- */
+.carousel-wrapper {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  gap: 20px;
+  padding-bottom: 10px;
+}
+.testimonial-carousel {
+  display: flex;
+  gap: 20px;
+}
+.testimonial-carousel::-webkit-scrollbar { height: 8px; }
+.testimonial-carousel::-webkit-scrollbar-thumb { background-color: var(--accent); border-radius: 4px; }
+.testimonial-carousel::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+.testimonial {
+  flex: 0 0 320px;
+  min-width: 260px;
+  scroll-snap-align: start;
+  background: var(--card);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.testimonial p { font-style: italic; font-size: 16px; line-height: 1.6; color: var(--accent-2); margin-bottom: 10px; }
+.testimonial strong { color: var(--accent); font-weight: 600; font-size: 14px; }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .grid.three-col { grid-template-columns: repeat(2, 1fr); }
+  .hero { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .grid.three-col { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; }
+  .testimonial { flex: 0 0 90%; min-width: 80%; margin: 0 auto; }
+}
+@media (max-width: 480px) {
+  header nav { display: none; }
+  .menu-toggle { display: block; }
+}
+/* ==== RODAPÉ ==== */
+footer {
+  text-align: center;       /* Centraliza todo o conteúdo */
+  padding: 20px 0;          /* Espaçamento superior/inferior */
+  background-color: #f9f9f9; /* Fundo clarinho opcional */
+}
+
+footer p {
+  font-size: 1.1rem;        /* Aumenta o tamanho do texto */
+  font-weight: 500;         /* Dá um pouco mais de destaque */
+  margin: 0;                /* Remove margens extras */
+  color: #6643bf;              /* Cor elegante */
+}
+
+/* Estilo utilitário para centralizar texto */
+.text-center {
+    text-align: center;
+}
+/* Garante centralização completa do contato direto em qualquer tela */
+.responsive-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* centraliza horizontalmente */
+    justify-content: center; /* centraliza verticalmente se necessário */
+    text-align: center;   /* centraliza o texto */
+    max-width: 500px;     /* limita largura para não esticar demais */
+    margin: 30px auto 0 auto; /* centraliza horizontalmente */
+    gap: 6px;             /* espaçamento entre linhas */
+}
+
+/* Pequenas adaptações em telas menores */
+@media (max-width: 768px) {
+    .responsive-center {
+        width: 90%;  /* ocupa quase toda a tela */
+        margin: 20px auto 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-center {
+        width: 100%; /* ocupa toda a tela */
+        padding: 0 10px;
+    }
+}
+
+/* Login */
+#login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.login-card {
+  background: var(--card);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  width: 100%;
+}
+
+.login-card h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--accent-2);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* AUMENTADO: Espaço acima dos botões */
+}
+
+.form-actions button {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.form-actions button:hover {
+  background: var(--accent-2);
+}
+
+.form-errors {
+  color: #b00020;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* Dashboard */
+#dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.dashboard-card {
+  background: var(--card);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.dashboard-card h3 {
+  margin-bottom: 15px;
+  color: var(--accent-2);
+}
+
+.dashboard-links {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Logout */
+#logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.logout-card {
+  background: var(--card);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.logout-card h3 {
+  margin-bottom: 10px;
+  color: var(--accent-2);
+}
+
+/*
+ * Seção adicionada para estilizar a página de logout (Passo 2)
+ * Estes estilos substituem o estilo inline removido do logout.html.
+ */
+.logout-section {
+    max-width: 500px;
+    margin: 50px auto; /* Centraliza horizontalmente e adiciona margem vertical */
+    text-align: center;
+}
+/* * Classe genérica para formulários de autenticação (password_change_form, etc.)
+ * Garante que o formulário fique centralizado e com largura limitada.
+ */
+.auth-form-section {
+    max-width: 500px;
+    margin: 50px auto; /* Centraliza horizontalmente e adiciona margem vertical */
+    padding: 20px;
+    /* Opcional: Adicione um box-shadow ou borda se for um card */
+    /* border: 1px solid var(--border-color); */
+    /* border-radius: 8px; */
+}
+
+/* Estilo para os textos de ajuda dos campos (help_text) */
+.form-help-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.85em;
+    color: var(--text-muted); /* Use uma cor mais suave */
+}
+
+/* Estilo para as mensagens de erro por campo */
+.field-error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}

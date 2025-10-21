@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Gerenciamento de Serviços{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>📋 Gerenciamento de Serviços</h1>
+        <a href="{% url 'core:servico_criar' %}" class="btn btn-primary">
+            + Novo Serviço
+        </a>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {% if servico_list %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Descrição (Trecho)</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for servico in servico_list %}
+                        <tr>
+                            <td>{{ servico.name }}</td>
+                            <td>{{ servico.description|default:"—" }}</td>
+                            
+                            <td class="text-center">
+                                {# SOLUÇÃO FINAL: Usa display: inline-flex e ajusta a margem #}
+                                <div style="display: inline-flex; gap: 5px;">
+                                    <a href="{% url 'core:servico_editar' servico.pk %}" class="btn btn-sm btn-success" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'core:servico_excluir' servico.pk %}" class="btn btn-sm btn-danger" title="Excluir">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            <p class="mb-0">Nenhum serviço cadastrado. 
+                <a href="{% url 'core:servico_criar' %}">Comece criando um!</a>
+            </p>
+        </div>
+    {% endif %}
+
+    <div class="mt-5 text-center">
+        <a href="{% url 'core:dashboard' %}" class="btn btn-outline-secondary">
+            &larr; Voltar para o Dashboard
+        </a>
+    </div>
+</div>
+{% endblock %}

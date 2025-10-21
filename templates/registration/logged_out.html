@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Sessão Encerrada{% endblock %}
+
+{% block content %}
+<section id="logout-done" class="auth-form-section">
+    <h2>Sessão Encerrada</h2>
+    <p>Você saiu do sistema. Seus dados foram protegidos.</p>
+    
+    <p class="mt-4">
+        <a href="{% url 'login' %}" class="btn btn-primary">Fazer login novamente</a>
+    </p>
+</section>
+{% endblock %}
