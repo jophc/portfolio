@@ -79,6 +79,29 @@ Se o arquivo `db.sqlite3` não foi incluído (prática recomendada), você preci
 | Editar Config. Global | `/config/editar/` | `core:siteconfig_editar` |
 
 ---
+## 📝 Modelo Relacional
+<img width="885" height="839" alt="fLJ1ZjCm4Br7oZ-CUjaKr42Hk4IbsgefgABjLcqvHxFED35AuiXsbaM84mU-W0z0Uq2SLtn1VWmdRQ2f5bHA3eap7hytVfxdIwLHwY9DR4jpdH3CHKY9W91WHGaoBZ9CATC2dCdAxq8FbaBgRNcVS04-AHvbjcLR5p0MAMQXW1mbGi8Zb80Wyl9RUITWpJ0XpxPKzOM--zosOcue69SieHt0Ytz-gb" src="https://github.com/user-attachments/assets/48912548-5e07-45d4-83e4-5ffd36c26361" />
 
-## 📝 Documentação Adicional
-*(Insira capturas de tela aqui para o arquivo final)*
+
+## 📝 Documentação Adicional (captura de telas)
+
+**home**
+<img width="1559" height="4025" alt="home-dashboard" src="https://github.com/user-attachments/assets/44cfd472-a1f3-450a-8cfc-6ddd53a5bb2d" />
+
+**Login**
+<img width="1559" height="975" alt="login" src="https://github.com/user-attachments/assets/151b9958-faca-44cc-9873-9fc2f51503fb" />
+
+**Dashboard**
+<img width="1559" height="1312" alt="Dashboard" src="https://github.com/user-attachments/assets/f7948811-04e0-4005-a727-6f26f8c0349b" />
+
+**Gerenciamento de Projetos** 
+<img width="1559" height="975" alt="Gerenciamento de Projetos" src="https://github.com/user-attachments/assets/a64fbe8a-5516-4a34-bbe5-2ae848bb9dc0" />
+
+**Gerenciar Depoimentos**
+<img width="1559" height="1210" alt="Gerenciar Depoimentos" src="https://github.com/user-attachments/assets/fdceefc6-7fbb-4af7-bb35-d20ed98240de" />
+
+**Mensagens de Contato**
+<img width="1559" height="975" alt="Mensagens de Contato" src="https://github.com/user-attachments/assets/6c6dd982-1276-47e0-b69a-f4034e294449" />
+
+**Configurações do Site**
+<img width="1559" height="1595" alt="Configurações do Site" src="https://github.com/user-attachments/assets/4d58eed0-b9a3-4608-99f1-18af3d67ef0b" />
