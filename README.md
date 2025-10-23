@@ -88,20 +88,26 @@ Se o arquivo `db.sqlite3` não foi incluído (prática recomendada), você preci
 **home**
 <img width="780" height="2013" alt="home-dashboard" src="https://github.com/user-attachments/assets/44cfd472-a1f3-450a-8cfc-6ddd53a5bb2d" />
 
+
 **Login**
 <img width="780" height="488" alt="login" src="https://github.com/user-attachments/assets/151b9958-faca-44cc-9873-9fc2f51503fb" />
+
 
 **Dashboard**
 <img width="780" height="656" alt="Dashboard" src="https://github.com/user-attachments/assets/f7948811-04e0-4005-a727-6f26f8c0349b" />
 
+
 **Gerenciamento de Projetos** 
 <img width="780" height="488" alt="Gerenciamento de Projetos" src="https://github.com/user-attachments/assets/a64fbe8a-5516-4a34-bbe5-2ae848bb9dc0" />
+
 
 **Gerenciar Depoimentos**
 <img width="780" height="605" alt="Gerenciar Depoimentos" src="https://github.com/user-attachments/assets/fdceefc6-7fbb-4af7-bb35-d20ed98240de" />
 
+
 **Mensagens de Contato**
 <img width="780" height="488" alt="Mensagens de Contato" src="https://github.com/user-attachments/assets/6c6dd982-1276-47e0-b69a-f4034e294449" />
+
 
 **Configurações do Site**
 <img width="780" height="798" alt="Configurações do Site" src="https://github.com/user-attachments/assets/4d58eed0-b9a3-4608-99f1-18af3d67ef0b" />
