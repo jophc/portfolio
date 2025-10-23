@@ -12,8 +12,8 @@ Este projeto Django implementa um sistema de gerenciamento interno para um portf
 | **CRUD Completo** | Implementação de Criar, Ler, Atualizar e Excluir registros para as classes `Projeto`, `Servico` e `Testimonial`. | **Concluído** |
 | **Paginação** | Implementada nas listas de Projetos e Mensagens. | **Concluído** |
 | **Autenticação Personalizada** | Login/Logout e todas as áreas administrativas (`/dashboard/`) protegidas. | **Concluído** |
-| **HTMX** | Carrossel de Depoimentos com troca assíncrona (sem recarga de página). | **Bônus (5 pts)** |
-| **Imagens** | Upload e exibição de capa de projeto. | **Bônus (5 pts)** |
+| **HTMX** | Carrossel de Depoimentos com troca assíncrona (sem recarga de página). | **Bônus** |
+| **Imagens** | Upload e exibição de capa de projeto. | **Bônus** |
 
 ---
 
