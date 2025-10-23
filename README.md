@@ -81,5 +81,6 @@ Se o arquivo `db.sqlite3` não foi incluído (prática recomendada), você preci
 ---
 
 ## 📝 Documentação Adicional
+<img width="1559" height="4025" alt="home-dashboard" src="https://github.com/user-attachments/assets/e3ed502c-2a00-4380-9e87-f84b59c07387" />
 
 *(Insira capturas de tela aqui para o arquivo final)*
